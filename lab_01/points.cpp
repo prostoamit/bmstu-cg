@@ -36,9 +36,9 @@ GraphicPoints::points_modify_for_scene()
     {
         for (size_t i = 0; i < this->size(); i++)
         {
-            std::get<1>(this->points[i])->setRect(VIEW_BORDER * 2 - POINT_RAD_PIX * 0.5, this->view->height() - VIEW_BORDER * 2 - POINT_RAD_PIX * 0.5, POINT_RAD_PIX, POINT_RAD_PIX);
+            std::get<1>(this->points[i])->setRect(VIEW_BORDER - POINT_RAD_PIX * 0.5, this->view->height() - VIEW_BORDER - POINT_RAD_PIX * 0.5, POINT_RAD_PIX, POINT_RAD_PIX);
             std::get<1>(this->points[i])->setBrush(Qt::black);
-            std::get<2>(this->points[i])->setPos(VIEW_BORDER * 2, this->view->height() - VIEW_BORDER * 2);
+            std::get<2>(this->points[i])->setPos(VIEW_BORDER, this->view->height() - VIEW_BORDER);
         }
         return;
     }
@@ -89,7 +89,7 @@ GraphicPoints::push_back(Point point)
 {
     QGraphicsEllipseItem *dot = this->scene->addEllipse(1, 1, 1, 1);
     char buffer[256] = {0};
-    std::snprintf(buffer, 255, "[%.1f, %.1f]", point.x, point.y);
+    std::snprintf(buffer, 255, "[%.2lf, %.2lf]", point.x, point.y);
     QGraphicsTextItem *text = this->scene->addText(QString::fromStdString(buffer));
     this->points.push_back(std::tuple<Point, QGraphicsEllipseItem*, QGraphicsTextItem*>(point, dot, text));
 

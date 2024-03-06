@@ -15,6 +15,23 @@ GraphicsTriangle::GraphicsTriangle(Point p1, Point p2, Point p3)
     std::get<0>(this->nodes[2]) = p3;
 }
 
+
+bool
+GraphicsTriangle::is_correct()
+{
+    double edges[] = {
+        distance_points(std::get<0>(this->nodes[1]), std::get<0>(this->nodes[2])),
+        distance_points(std::get<0>(this->nodes[2]), std::get<0>(this->nodes[0])),
+        distance_points(std::get<0>(this->nodes[0]), std::get<0>(this->nodes[1]))
+    };
+
+    for (int i = 0; i < 3; i++)
+        if (2 * this->area() / edges[i] < EPS)
+            return false;
+
+    return true;
+}
+
 double
 GraphicsTriangle::area()
 {

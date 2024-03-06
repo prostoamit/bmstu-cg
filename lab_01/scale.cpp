@@ -70,13 +70,16 @@ Scale::draw()
 
     double d = d_x > d_y ? d_x : d_y;
 
+    if (d == 0.0)
+        return;
+
     double value_step = d / (MARKS_COUNT - 1);
 
-    double pixel_step_x = (width - 200) / (MARKS_COUNT - 1);
-    double pixel_step_y = (height - 200) / (MARKS_COUNT - 1);
+    int pixel_step_x = (width - 200) / (MARKS_COUNT - 1);
+    int pixel_step_y = (height - 200) / (MARKS_COUNT - 1);
 
-    this->x_axis = this->scene->addLine(100, height - BORDER, width, height - BORDER);
-    this->y_axis = this->scene->addLine(BORDER, 0, BORDER, height - 100);
+    this->x_axis = this->scene->addLine(100, height - BORDER, width - 102, height - BORDER);
+    this->y_axis = this->scene->addLine(BORDER, 102, BORDER, height - 100);
 
     for (size_t i = 0; i < MARKS_COUNT; i++)
     {

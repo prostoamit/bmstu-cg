@@ -18,6 +18,8 @@ public:
     GraphicsTriangle();
     GraphicsTriangle(Point p1, Point p2, Point p3);
 
+    bool is_correct();
+
     double area();
     GraphicsCircle circumcirle();
 

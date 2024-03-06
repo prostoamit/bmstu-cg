@@ -63,6 +63,9 @@
             </item>
             <item row="0" column="3">
              <widget class="QDoubleSpinBox" name="PointXInput">
+              <property name="decimals">
+               <number>2</number>
+              </property>
               <property name="minimum">
                <double>-2000000000.000000000000000</double>
               </property>
@@ -73,6 +76,9 @@
             </item>
             <item row="1" column="3">
              <widget class="QDoubleSpinBox" name="PointYInput">
+              <property name="decimals">
+               <number>2</number>
+              </property>
               <property name="minimum">
                <double>-2000000000.000000000000000</double>
               </property>

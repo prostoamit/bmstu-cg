@@ -40,13 +40,13 @@ Solution::find(GraphicPoints &points)
                 double current_diff = triangle.circumcircle_area_diff();
                 double area = triangle.area();
 
-                if ((current_diff < min_diff) && (area > EPS))
+                if ((current_diff <= min_diff) && triangle.is_correct())
                 {
                     this->triangle = triangle;
                     this->circle = triangle.circumcirle();
+                    min_diff = current_diff;
                     found = 1;
                 }
-
             }
 
     return !found;
