@@ -25,10 +25,6 @@ GraphicsTriangle::is_correct()
         distance_points(std::get<0>(this->nodes[0]), std::get<0>(this->nodes[1]))
     };
 
-    for (int i = 0; i < 3; i++)
-        if (2 * this->area() / edges[i] < EPS)
-            return false;
-
     return true;
 }
 
@@ -52,16 +48,6 @@ GraphicsTriangle::circumcirle()
     double y2 = std::get<0>(this->nodes[1]).y;
     double x3 = std::get<0>(this->nodes[2]).x;
     double y3 = std::get<0>(this->nodes[2]).y;
-
-
-//    double x1y1_2 = x1 * x1 + y1 * y1;
-//    double x2y2_2 = x2 * x2 + y2 * y2;
-//    double x3y3_2 = x3 * x3 + y3 * y3;
-
-//    double denominator = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
-
-//    double x_centre = -0.5 * (y1 * (x2y2_2 - x3y3_2) + y2 * (x3y3_2 - x1y1_2) + y3 * (x1y1_2 - x2y2_2)) / denominator;
-//    double y_centre =  0.5 * (x1 * (x2y2_2 - x3y3_2) + x2 * (x3y3_2 - x1y1_2) + x3 * (x1y1_2 - x2y2_2)) / denominator;
 
 
     double zx = (y1 - y2) * (x3 * x3 + y3 * y3) +

@@ -38,7 +38,6 @@ Solution::find(GraphicPoints &points)
             {
                 GraphicsTriangle triangle(points.get_point(i), points.get_point(j), points.get_point(k));
                 double current_diff = triangle.circumcircle_area_diff();
-                double area = triangle.area();
 
                 if ((current_diff <= min_diff) && triangle.is_correct())
                 {
@@ -92,9 +91,6 @@ Solution::draw(GraphicPoints &points)
 
     double ratio = (std::min(window_height, window_width) - VIEW_BORDER * 2) / d;
 
-//    double ratio_x = (window_width - VIEW_BORDER * 2) / d;
-//    double ratio_y = (window_height - VIEW_BORDER * 2) / d;
-
     double ratio_x = ratio;
     double ratio_y = ratio;
 
@@ -142,12 +138,13 @@ Solution::draw(GraphicPoints &points)
         circumcircle_radius * 2, circumcircle_radius * 2
         );
 
-    this->text->setText(this->text->toPlainText() + "\nРешение - треугольник с вершинами в точках:" +
-                        "\n\t1. x: " + QString::fromStdString(std::to_string(std::get<0>(this->triangle.nodes[0]).x)) + "\ty: " + QString::fromStdString(std::to_string(std::get<0>(this->triangle.nodes[0]).y)) +
+    this->text->setText("\nРешение - треугольник с вершинами в точках:\n\t1. x: " +
+                        QString::fromStdString(std::to_string(std::get<0>(this->triangle.nodes[0]).x)) + "\ty: " + QString::fromStdString(std::to_string(std::get<0>(this->triangle.nodes[0]).y)) +
                         "\n\t2. x: " + QString::fromStdString(std::to_string(std::get<0>(this->triangle.nodes[1]).x)) + "\ty: " + QString::fromStdString(std::to_string(std::get<0>(this->triangle.nodes[1]).y)) +
                         "\n\t3. x: " + QString::fromStdString(std::to_string(std::get<0>(this->triangle.nodes[2]).x)) + "\ty: " + QString::fromStdString(std::to_string(std::get<0>(this->triangle.nodes[2]).y)) +
                         "\n\nПолощадь треугольника: " + QString::fromStdString(std::to_string(this->triangle.area())) + "\tПлощадь описанной окружности: " + QString::fromStdString(std::to_string(this->circle.area())) +
-                        "\nИх разность: " + QString::fromStdString(std::to_string(this->triangle.circumcircle_area_diff())) + "\n"
+                        "\nИх разность: " + QString::fromStdString(std::to_string(this->triangle.circumcircle_area_diff())) + "\n" +
+                        this->text->toPlainText()
                 );
 
     return 0;

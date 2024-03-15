@@ -73,18 +73,6 @@ table_add_point(QTableWidget *table, Point point)
     QTableWidgetItem *y_cell = new QTableWidgetItem(QString::fromStdString(std::to_string(point.y)));
     y_cell->setFlags(y_cell->flags() ^ Qt::ItemIsEditable);
     table->setItem(rows_count, 1, y_cell);
-
-
-//    table->setCellWidget(rows_count, 0, new QLabel);
-//    table->setCellWidget(rows_count, 1, new QLabel);
-
-//    double x_value = point.x;
-//    std::string x_stdstring = std::to_string(x_value);
-//    ((QLineEdit *)table->cellWidget(rows_count, 0))->setText(QString::fromStdString(x_stdstring));
-
-//    double y_value = point.y;
-//    std::string y_stdstring = std::to_string(y_value);
-//    ((QLineEdit *)table->cellWidget(rows_count, 1))->setText(QString::fromStdString(y_stdstring));
 }
 
 void
@@ -141,9 +129,9 @@ MainWindow::on_PointInputButton_clicked()
     ui->PointYInput->setValue(0.0);
 
     ui->Graphics->setScene(this->points.scene);
-    ui->SolutionText->setText(ui->SolutionText->toPlainText() + "\nДобавлена точка x: " +
+    ui->SolutionText->setText("\nДобавлена точка x: " +
                             QString::fromStdString(std::to_string(x_value)) + "\ty: " +
-                              QString::fromStdString(std::to_string(y_value)) + ".\n");
+                              QString::fromStdString(std::to_string(y_value)) + ".\n" + ui->SolutionText->toPlainText());
 
     ui->PointXInput->setFocus();
 }
@@ -163,7 +151,7 @@ MainWindow::on_PointsDeleteAllButton_clicked()
     this->scale.draw();
 
 
-    ui->SolutionText->setText(ui->SolutionText->toPlainText() + "\nУдалены все точки.");
+    ui->SolutionText->setText("\nУдалены все точки." + ui->SolutionText->toPlainText());
 
     ui->Graphics->setScene(this->points.scene);
     this->solution.scene->clear();
@@ -181,9 +169,10 @@ MainWindow::on_PointDeleteButton_clicked()
         return;
     }
 
-    ui->SolutionText->setText(ui->SolutionText->toPlainText() + "\nУдалена точка x: " +
+    ui->SolutionText->setText("\nУдалена точка x: " +
                               QString::fromStdString(std::to_string(this->points.get_point(position - 1).x)) + "\ty: " +
-                              QString::fromStdString(std::to_string(this->points.get_point(position - 1).y)) + ".\n");
+                              QString::fromStdString(std::to_string(this->points.get_point(position - 1).y)) + ".\n" +
+                                ui->SolutionText->toPlainText());
 
     this->points.remove(position - 1);
     ui->PointsTable->removeRow((int)(position - 1));
@@ -274,9 +263,9 @@ void MainWindow::on_pushButton_clicked()
 
     ui->Graphics->setScene(this->points.scene);
 
-    ui->SolutionText->setText(ui->SolutionText->toPlainText() + "\nТочка 1 заменена на x: " +
+    ui->SolutionText->setText("\nТочка 1 заменена на x: " +
                               QString::fromStdString(std::to_string(x_value)) + "\ty: " +
-                              QString::fromStdString(std::to_string(y_value)) + ".\n");
+                              QString::fromStdString(std::to_string(y_value)) + ".\n" + ui->SolutionText->toPlainText());
 }
 
 
